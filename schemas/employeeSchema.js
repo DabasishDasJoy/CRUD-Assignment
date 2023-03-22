@@ -5,11 +5,13 @@ const employeeSchema = mongoose.Schema({
     firstName: {
         type: String,
         required: true,
+        trim:true,
     },
 
     lastName: {
         type: String,
         required: true,
+        trim: true,
     },
 
     email: {
@@ -17,13 +19,29 @@ const employeeSchema = mongoose.Schema({
         required: true,
     },
 
+    phone: {
+        type: Number,
+        required: true,
+    },
+
     block:{
         type: Boolean,
         required: true,
-        default: false
-    }
-});
+        default: false,
+    }, 
+    
+},
 
-module.exports = employeeSchema;
+// keep track the data times
+{
+    timestamps: true
+}
+
+);
+
+
+// create the model
+const Employee = mongoose.model("Employee", employeeSchema);
+module.exports = Employee;
 
 

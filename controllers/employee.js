@@ -1,13 +1,11 @@
 const mongoose = require("mongoose");
-const employeeSchema = require("../schemas/employeeSchema");
-const Employee  = new mongoose.model("Employee", employeeSchema);
-
+const Employee  = require("../schemas/employeeSchema");
 
 // Get employee lists
 exports.getEmployees = async (req, res) => {
     try {
-        const employees = await Employee.find();
-        res.status(200).json(employees);
+      const employees = await Employee.find();
+      res.status(200).json(employees);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Server Error" });
@@ -20,6 +18,7 @@ exports.getEmployee = async (req, res) => {
       const { employeeId } = req.params;
       const employee = await Employee.findById(employeeId);
   
+      // check if employee exists
       if (!employee) {
         return res.status(404).json({ message: "Employee not found" });
       }
@@ -31,17 +30,18 @@ exports.getEmployee = async (req, res) => {
     }
 };
 
+
 // create an employee
 exports.createEmployee = async( req, res)=> {
     try {
-        // create new employee data 
-        const newEmployee = new Employee(req.body);
+      // create new employee data 
+      const newEmployee = new Employee(req.body);
         
-        // create employee in databse
-        await newEmployee.save();
+      // create employee in databse
+      await newEmployee.save();
 
-        // send response
-        res.status(201).json({ message: "Employee created successfully"});
+      // send response
+      res.status(201).json({ message: "Employee created successfully" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "server error" });
