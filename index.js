@@ -18,7 +18,8 @@ mongoose.connect(
     mongoAtlasURI,
     { 
         useNewUrlParser: true, 
-        useUnifiedTopology: true 
+        useUnifiedTopology: true ,
+        dbName: 'Crud_Assignment'
     }
   ).then(() => {
     console.log("MongoDB connected");
