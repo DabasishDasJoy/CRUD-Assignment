@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const employeeHandler = require("./routeHandler/employeeHandler");
 
 // getting the express object to get all the features
 const app = express();
@@ -26,7 +27,9 @@ mongoose.connect(
   });
 
 
-// error handling
+// application routes
+app.use("/employee", employeeHandler);
+
 
 
 app.listen(port, ()=> {
