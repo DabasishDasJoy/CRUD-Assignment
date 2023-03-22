@@ -38,13 +38,13 @@ exports.createEmployee = async( req, res)=> {
       const newEmployee = new Employee(req.body);
         
       // create employee in databse
-      await newEmployee.save();
+      const result = await newEmployee.save();
 
       // send response
-      res.status(201).json({ message: "Employee created successfully" });
+      res.status(201).json({ message: "Employee created successfully", result });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "server error" });
+        res.status(500).json({ message: "Server error" });
     }
 };
 

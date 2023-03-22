@@ -1,9 +1,12 @@
 const express = require("express");
+// create a router
 const router = express.Router();
-const {check} = require("express-validator");
 
-const EmployeeController = require('../controllers/employee');
+const { check } = require("express-validator");
 const { employeeValidator, employeeValidationHanlder } = require("../middleware/employes/employeeValidator")
+// controller
+const EmployeeController = require('../controllers/employee');
+
 // get all employee list
 router.get("/", EmployeeController.getEmployees);
 
@@ -14,7 +17,7 @@ router.get("/:employeeId", EmployeeController.getEmployee);
 router.post("/", employeeValidator, employeeValidationHanlder, EmployeeController.createEmployee);
 
 // update a employee data
-router.put("/:employeeId", EmployeeController.updatedEmployee, employeeValidator);
+router.put("/:employeeId", EmployeeController.updatedEmployee);
 
 // delete employee
 router.delete("/:employeeId", EmployeeController.deleteEmployee)
