@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const employeeHandler = require("./routeHandler/employeeHandler");
+const employeeHandler = require("./routeHandler/employee");
 
 // getting the express object to get all the features
 const app = express();
