@@ -7,9 +7,15 @@ const employeeSchema = require("../schemas/employeeSchema");
 const Employee  = new mongoose.model("Employee", employeeSchema);
 
 // get all the employee
-router.get("/", async (req, res)=>{
- 
-})
+router.get("/", async (req, res) => {
+    try {
+      const employees = await Employee.find();
+      res.status(200).json(employees);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: "Server Error" });
+    }
+});
 
 
 // create a employee
@@ -23,21 +29,39 @@ router.post("/", async( req, res)=> {
 
         // send response
         res.status(201).json({ message: "Employee created successfully"});
-      } catch (error) {
+    } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Internal server error" });
-      }
+    }
 })
 
 
 // Update employee
-router.put("/", async( req, res)=> {
-
+router.put("/:employeeId", async( req, res)=> {
+    
 })
 
 // delete employee
-router.delete("/", async (req, res)=> {
+router.delete("/:employeeId", async (req, res)=> {
+    try {
+        // get employee id from query params
+        const { employeeId } = req.params;
 
+        // find the employee and delete
+        const deletedEmployee = await Employee.findByIdAndDelete(employeeId);
+        
+        // Error if employee not found
+        if (!deletedEmployee) {
+          return res.status(404).json({ message: "Employee not found" });
+        }
+    
+        // result if employee found
+        res.status(200).json({ message: "Employee deleted successfully" });
+        
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Server Error" });
+    }
 })
 
 // block employee
