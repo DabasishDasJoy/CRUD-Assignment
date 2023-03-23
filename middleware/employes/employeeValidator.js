@@ -30,7 +30,7 @@ const employeeValidator = [
                 throw createError(err.message);
             }
         }),
-    check("mobile")
+    check("phone")
         .custom(async (value) =>{
             try{
             const employee = await Employee.findOne({ email: value });

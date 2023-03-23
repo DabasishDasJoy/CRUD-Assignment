@@ -2,7 +2,7 @@ const express = require("express");
 // create a router
 const router = express.Router();
 
-const { check } = require("express-validator");
+
 const { employeeValidator, employeeValidationHanlder } = require("../middleware/employes/employeeValidator")
 // controller
 const EmployeeController = require('../controllers/employee');
