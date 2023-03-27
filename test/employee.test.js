@@ -54,5 +54,53 @@ describe("Employees", () => {
           done(); // Call done() to indicate the test case is complete
         });
     });
+
+    // test case for if employee is not found
+    it("it should return 404 if employee not found", (done) => {
+      const updatedEmployee = {
+        firstName: "Kabir",
+        lastName: "Khan",
+        phone: "0175545687",
+      };
+      chai
+        .request(app)
+        .put("/employee/642151e1f8e4988b9c8a4d5f") // Make a PUT request to update an employee that doesn't exist
+        .send(updatedEmployee)
+        .end((err, res) => {
+          if (err) return done(err);
+          res.should.have.status(404); // Expect the HTTP response status code to be 404 Not Found or 500 Internal Server Error
+          res.body.should.be.a("object");
+          res.body.should.have.property("message").eql("Employee not found"); // Expect the response message to indicate employee not found
+          done(); // Test case complete
+        });
+    });
+
+    // Test case for server error
+    it("should return 500 if server error in update", (done) => {
+      // Create a new error object to use as a mock error
+      const mockError = new Error("Database error");
+      // Create a stub for the findByIdAndUpdate method on the Employee model
+      sinon.stub(Employee, "findByIdAndUpdate").throws(mockError);
+      // Create an object representing the updated employee data
+      const updatedEmployee = {
+        firstName: "Jane",
+        lastName: "Doe",
+        phone: "9876543210",
+      };
+
+      // Send a PUT request to the app with the updated employee data
+      chai
+        .request(app)
+        .put(`/employee/${employeeId}`)
+        .send(updatedEmployee)
+        .end((err, res) => {
+          Employee.findByIdAndUpdate.restore(); // Restore the stubbed method to its original implementation
+          if (err) return done(err); // If there is an error in the request, pass it to the done() callback
+          res.should.have.status(500); // Assert that the response has a status code of 500
+          res.body.should.be.a("object"); // Assert that the response body is an object
+          res.body.should.have.property("message").eql("Server Error"); // Assert that the response body has a "message" property equal to "Server Error"
+          done(); // Test case is completed
+        });
+    });
   });
 });
