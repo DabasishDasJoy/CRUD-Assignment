@@ -7,7 +7,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "mocha 'test/**/*.test.js'",
-    "test-single": "mocha"
+    "test-single": "mocha",
+    "test-report": "mocha 'test/**/*.test.js' --reporter mochawesome --require mochawesome/register"
   },
   "keywords": [],
   "author": "",
