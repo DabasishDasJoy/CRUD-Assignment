@@ -6,18 +6,23 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-validator": "^6.15.0",
     "http-errors": "^2.0.0",
+    "mocha": "^10.2.0",
     "mongoose": "^7.0.2",
     "mongoose-unique-validator": "^3.1.0",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "sinon": "^15.0.3"
   }
 }
