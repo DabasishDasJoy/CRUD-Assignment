@@ -11,7 +11,7 @@ const sinon = require("sinon"); // For mocking/stubbing functions
 chai.use(chaiHttp); // Configure chai to use chai-http for HTTP testing
 
 // test cases for Employees End Point
-describe("---------> Employee Model <--------", () => {
+describe("---------> Employee Controller - Integration Test <--------", () => {
   // Employee object that will be used for testing
   const employee = {
     firstName: "Sakib",
