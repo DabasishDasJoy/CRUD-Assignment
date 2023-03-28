@@ -11,7 +11,11 @@ describe("---------------Employee Controller - UNIT Test ---------", () => {
       // request object for the test definition
       const req = {
         params: { employeeId: "64226271d84a6c25e809b26b" },
-        body: { firstName: "John", lastName: "Doe", phone: "555-555-5555" },
+        body: {
+          firstName: "Mashrafee",
+          lastName: "Mortaza",
+          phone: "01775545455",
+        },
       };
 
       // define the response object for the test
@@ -48,7 +52,11 @@ describe("---------------Employee Controller - UNIT Test ---------", () => {
       // Define request parameters
       const req = {
         params: { employeeId: "123" },
-        body: { firstName: "John", lastName: "Doe", phone: "555-555-5555" },
+        body: {
+          firstName: "Mashrafee",
+          lastName: "Mortaza",
+          phone: "01775545455",
+        },
       };
       // Define a response object with stubbed methods
       const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
@@ -78,7 +86,11 @@ describe("---------------Employee Controller - UNIT Test ---------", () => {
       // Define mock request object
       const req = {
         params: { employeeId: "123" },
-        body: { firstName: "John", lastName: "Doe", phone: "555-555-5555" },
+        body: {
+          firstName: "Mashrafee",
+          lastName: "Mortaza",
+          phone: "01775545455",
+        },
       };
 
       // Define mock response object with stubbed status and json methods
